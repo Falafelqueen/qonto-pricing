@@ -1,0 +1,7 @@
+<%= turbo_frame_tag :plans do %>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-4">
+    <% @plans.each do |plan| %>
+      <%= render plan %>
+    <% end %>
+  </div>
+<% end %>

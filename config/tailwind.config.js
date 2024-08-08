@@ -147,10 +147,18 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        sans: ["PolySans", ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        coral: "#feebdb",
+        "qonto-black": "#1d1d1b",
+      },
+      boxShadow: {
+        featured: "-8px 4px 0 -4px #1d1d1b",
       },
     },
   },
+
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),

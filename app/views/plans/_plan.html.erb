@@ -1,0 +1,27 @@
+<div class="flex flex-col gap-y-4 bg-white rounded border border-qonto-black p-8 md:even:shadow-featured md:even:-translate-y-8">
+  <% image_name = plan.image_name.presence || 'placeholder.png' %>
+  <%= image_tag image_name, height: 150, width: 150 %>
+  <h3 class="text-2xl font-medium"><%= plan.name %></h3>
+  <p class="text-lg"><%= plan.price %> <span class="text-gray-500 text-sm">/ per month</span></p>
+  <p><%= plan.description %></p>
+  <div>
+    <%= link_to 'Open an account', plan_path(plan), class: 'block w-full py-3 px-4 mb-2 rounded text-white bg-qonto-black text-center', data: {turbo_frame: '_top'} %>
+    <p class="text-xs text-gray-600">30 days free. No engagement </p>
+  </div>
+  <hr>
+  <ul>
+    <% plan.features.each do |feature| %>
+      <li class="flex gap-4 gap-y-8 text-sm items-start">
+        <%= image_tag 'check.svg', width: 15, height: 15, class: 'block' %>
+        <span>
+          <% if feature_description = feature.description.presence %>
+            <p class="font-medium"><%= feature.name %></p>
+            <span class="text-xs text-gray-600"><%= feature_description %></span>
+          <% else %>
+            <p><%= feature.name %></p>
+          <% end %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+</div>
