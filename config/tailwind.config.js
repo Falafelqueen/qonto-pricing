@@ -153,6 +153,9 @@ module.exports = {
         coral: "#feebdb",
         "qonto-black": "#1d1d1b",
       },
+      boxShadow: {
+        featured: "-8px 4px 0 -4px #1d1d1b",
+      },
     },
   },
 

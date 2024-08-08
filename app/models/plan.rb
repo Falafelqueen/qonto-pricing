@@ -6,7 +6,7 @@ class Plan < ApplicationRecord
   has_many :plan_features, dependent: :destroy
   has_many :features, through: :plan_features
 
-  scope :filter_by_category, ->(category_id) { where(category_id: category_id) }
+  scope :filter_by_category, ->(category) { where(category:) }
 
   def price
     # Returns the price cents in full currency
