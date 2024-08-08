@@ -40,23 +40,23 @@ premium_features = [
   Feature.create!(name: '24/7 support', description: '')
 ]
 
-[freelance_category, startup_category, enterprise_category].each do |category|
+[freelance_category, startup_category, enterprise_category].each.with_index(1) do |category, index|
   puts "Creating plans for #{category.name}...🚀"
-  basic = Plan.create(name: 'Basic', description: "Basic plan for #{category.name}", price_cents: 1000,
+  basic = Plan.create(name: 'Basic', description: "Basic plan for #{category.name}", price_cents: 1000 * index,
                       image_name: 'plan_1.png', category:)
   basic_features.each do |feature|
     basic.features << feature
   end
   puts "Basic plan created!🎉 With #{basic.features.size} features"
 
-  smart = Plan.create(name: 'Smart', description: "Smart plan for#{category.name}", price_cents: 5000,
+  smart = Plan.create(name: 'Smart', description: "Smart plan for#{category.name}", price_cents: 5000 * index,
                       image_name: 'plan_2.png', category:)
   smart_features.each do |feature|
     smart.features << feature
   end
   puts "Smart plan created!🎉 With #{smart.features.size} features"
 
-  premium = Plan.create(name: 'Premium', description: "Premium plan for big #{category.name}", image_name: 'plan_3.png', price_cents: 10_000,
+  premium = Plan.create(name: 'Premium', description: "Premium plan for big #{category.name}", image_name: 'plan_3.png', price_cents: 10_000 * index,
                         category:)
   premium_features.each do |feature|
     premium.features << feature

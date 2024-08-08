@@ -6,6 +6,10 @@ class PlansController < ApplicationController
     @plans = Plan.filter_by_category(category)
   end
 
+  def show
+    @plan = Plan.find(params[:id])
+  end
+
   def filter
     @plans = Plan.filter_by_category(params[:category_id])
     respond_to do |format|

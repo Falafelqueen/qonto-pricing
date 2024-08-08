@@ -56,7 +56,7 @@ group :development, :test do
   # Store secret keys in .env file
   gem 'rspec-rails'
   gem 'dotenv-rails'
-
+  gem 'webdrivers'
   # Check performance of queries [https://github.com/kirillshevch/query_track]
   gem 'query_track'
   gem 'factory_bot_rails'
@@ -93,7 +93,6 @@ group :test do
 
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem 'webdrivers'
 
   # One-liners to test common Rails functionality [https://github.com/thoughtbot/shoulda-matchers/tree/main]
   gem 'shoulda-matchers', '~> 6.0'
