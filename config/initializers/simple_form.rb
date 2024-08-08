@@ -11,8 +11,6 @@
 # this loads the file from lib/simple_form/extensions.rb that contains the custom input
 require 'simple_form/extensions'
 
-
-
 SimpleForm.setup do |config|
   # Wrappers are used by the form builder to generate a
   # complete input. You can remove any component from the

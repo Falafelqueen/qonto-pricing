@@ -1,0 +1,2 @@
+module CategoryPlansHelper
+end

@@ -149,8 +149,13 @@ module.exports = {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        coral: "#feebdb",
+        "qonto-black": "#1d1d1b",
+      },
     },
   },
+
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),

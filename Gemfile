@@ -56,16 +56,12 @@ group :development, :test do
   # Store secret keys in .env file
   gem 'rspec-rails'
   gem 'dotenv-rails'
-  
+
   # Check performance of queries [https://github.com/kirillshevch/query_track]
   gem 'query_track'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'webdrivers'
-  
-  # One-liners to test common Rails functionality [https://github.com/thoughtbot/shoulda-matchers/tree/main]
-  gem 'shoulda-matchers', '~> 6.0'
-    # Rubocop for formating and tidying up code
+  # Rubocop for formating and tidying up code
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -75,9 +71,6 @@ group :development, :test do
   gem 'rubocop-factory_bot', require: false
   # Bullet gem to detect N+1 queries
   gem 'bullet'
-
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
 end
 
 group :development do
@@ -95,10 +88,13 @@ end
 
 group :test do
   # Rspec is set up for both test and development
-    # To launch the html in browser and see the test (debugging purposes)
-    gem "launchy"
+  # To launch the html in browser and see the test (debugging purposes)
+  gem "launchy"
 
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "selenium-webdriver"
+  gem 'webdrivers'
+
+  # One-liners to test common Rails functionality [https://github.com/thoughtbot/shoulda-matchers/tree/main]
+  gem 'shoulda-matchers', '~> 6.0'
 end
