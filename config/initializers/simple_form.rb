@@ -1,0 +1,341 @@
+# frozen_string_literal: true
+#
+# Uncomment this and change the path if necessary to include your own
+# components.
+# See https://github.com/heartcombo/simple_form#custom-components to know
+# more about custom components.
+# Dir[Rails.root.join('lib/components/**/*.rb')].each { |f| require f }
+#
+# Use this setup block to configure all options available in SimpleForm.
+
+# this loads the file from lib/simple_form/extensions.rb that contains the custom input
+require 'simple_form/extensions'
+
+
+
+SimpleForm.setup do |config|
+  # Wrappers are used by the form builder to generate a
+  # complete input. You can remove any component from the
+  # wrapper, change the order or even add your own to the
+  # stack. The options given below are used to wrap the
+  # whole input.
+  config.i18n_scope = 'simple_form'
+
+
+  config.wrappers :default,
+    hint_class: :field_with_hint,
+    error_class: :field_with_errors,
+    valid_class: :field_without_errors do |b|
+    ## Extensions enabled by default
+    # Any of these extensions can be disabled for a
+    # given input by passing: `f.input EXTENSION_NAME => false`.
+    # You can make any of these extensions optional by
+    # renaming `b.use` to `b.optional`.
+
+    # Determines whether to use HTML5 (:email, :url, ...)
+    # and required attributes
+    b.use :html5
+
+    # Calculates placeholders automatically from I18n
+    # You can also pass a string as f.input placeholder: "Placeholder"
+    b.use :placeholder
+
+    ## Optional extensions
+    # They are disabled unless you pass `f.input EXTENSION_NAME => true`
+    # to the input. If so, they will retrieve the values from the model
+    # if any exists. If you want to enable any of those
+    # extensions by default, you can change `b.optional` to `b.use`.
+
+    # Calculates maxlength from length validations for string inputs
+    # and/or database column lengths
+    b.optional :maxlength
+
+    # Calculate minlength from length validations for string inputs
+    b.optional :minlength
+
+    # Calculates pattern from format validations for string inputs
+    b.optional :pattern
+
+    # Calculates min and max from length validations for numeric inputs
+    b.optional :min_max
+
+    # Calculates readonly automatically from readonly attributes
+    b.optional :readonly
+
+    ## Inputs
+    # b.use :input, class: 'input', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :label, class: 'block text-sm font-medium mb-2 dark:text-white'
+    b.wrapper tag: 'div', class: 'relative' do |ba|
+      ba.use :input, class: 'py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600'
+      ba.use :error_svg_with_container
+    end
+    b.use :error, wrap_with: { tag: 'p', class: 'text-xs text-red-600 mt-2 field-error' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'text-xs mt-2 field-hint' }
+    ## full_messages_for
+    # If you want to display the full error message for the attribute, you can
+    # use the component :full_error, like:
+    #
+    # b.use :full_error, wrap_with: { tag: :span, class: :error }
+  end
+
+
+  config.wrappers :numeric,
+    hint_class: :field_with_hint,
+    error_class: :field_with_errors,
+    valid_class: :field_without_errors do |b|
+    ## Extensions enabled by default
+    # Any of these extensions can be disabled for a
+    # given input by passing: `f.input EXTENSION_NAME => false`.
+    # You can make any of these extensions optional by
+    # renaming `b.use` to `b.optional`.
+
+    # Determines whether to use HTML5 (:email, :url, ...)
+    # and required attributes
+    b.use :html5
+
+    # Calculates placeholders automatically from I18n
+    # You can also pass a string as f.input placeholder: "Placeholder"
+    b.use :placeholder
+
+    ## Optional extensions
+    # They are disabled unless you pass `f.input EXTENSION_NAME => true`
+    # to the input. If so, they will retrieve the values from the model
+    # if any exists. If you want to enable any of those
+    # extensions by default, you can change `b.optional` to `b.use`.
+
+    # Calculates maxlength from length validations for string inputs
+    # and/or database column lengths
+    b.optional :maxlength
+
+    # Calculate minlength from length validations for string inputs
+    b.optional :minlength
+
+    # Calculates pattern from format validations for string inputs
+    b.optional :pattern
+
+    # Calculates min and max from length validations for numeric inputs
+    b.optional :min_max
+
+    # Calculates readonly automatically from readonly attributes
+    b.optional :readonly
+
+    ## Inputs
+    # b.use :input, class: 'input', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :label, class: 'block text-sm font-medium mb-2 dark:text-white'
+    b.wrapper tag: 'div', html:{ data: {controller: "numeric-controls"}}, class: 'relative'do |ba|
+      ba.use :input, data: {numeric_controls_target: 'value'}, class: 'py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600'
+      ba.use :numeric_controls
+    end
+    b.use :error, wrap_with: { tag: 'p', class: 'text-xs text-red-600 mt-2 field-error' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'text-xs mt-2 field-hint' }
+  end
+
+  config.wrappers :numeric_without_controls,
+    hint_class: :field_with_hint,
+    error_class: :field_with_errors,
+    valid_class: :field_without_errors do |b|
+    ## Extensions enabled by default
+    # Any of these extensions can be disabled for a
+    # given input by passing: `f.input EXTENSION_NAME => false`.
+    # You can make any of these extensions optional by
+    # renaming `b.use` to `b.optional`.
+
+    # Determines whether to use HTML5 (:email, :url, ...)
+    # and required attributes
+    b.use :html5
+
+    # Calculates placeholders automatically from I18n
+    # You can also pass a string as f.input placeholder: "Placeholder"
+    b.use :placeholder
+
+    ## Optional extensions
+    # They are disabled unless you pass `f.input EXTENSION_NAME => true`
+    # to the input. If so, they will retrieve the values from the model
+    # if any exists. If you want to enable any of those
+    # extensions by default, you can change `b.optional` to `b.use`.
+
+    # Calculates maxlength from length validations for string inputs
+    # and/or database column lengths
+    b.optional :maxlength
+
+    # Calculate minlength from length validations for string inputs
+    b.optional :minlength
+
+    # Calculates pattern from format validations for string inputs
+    b.optional :pattern
+
+    # Calculates min and max from length validations for numeric inputs
+    b.optional :min_max
+
+    # Calculates readonly automatically from readonly attributes
+    b.optional :readonly
+
+    ## Inputs
+    # b.use :input, class: 'input', error_class: 'is-invalid', valid_class: 'is-valid'
+    b.use :label, class: 'block text-sm font-medium mb-2 dark:text-white'
+    b.wrapper tag: 'div', class: 'relative'do |ba|
+      ba.use :input, class: 'py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600'
+    end
+    b.use :error, wrap_with: { tag: 'p', class: 'text-xs text-red-600 mt-2 field-error' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'text-xs mt-2 field-hint' }
+  end
+
+
+  config.wrappers :switch,
+    hint_class: :field_with_hint,
+    error_class: :field_with_errors,
+    valid_class: :field_without_errors do |b|
+      b.use :label, class: 'mr-4 text-sm font-medium'
+      b.wrapper tag: 'div', class: 'relative inline-block' do |ba|
+        ba.use :input, class: 'peer relative shrink-0 w-[4.25rem] h-9 p-px bg-gray-100 border border-gray-200 text-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-brand-600 disabled:opacity-50 disabled:pointer-events-none checked:bg-none checked:text-brand-100 checked:border-brand-200 focus:checked:border-brand-200 dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-brand-800/30 dark:checked:border-brand-800 dark:focus:ring-offset-gray-600 before:inline-block before:w-8 before:h-8 before:bg-white checked:before:bg-brand-600 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-neutral-400 dark:checked:before:bg-brand-500'
+        ba.use :switch_toggle
+      end
+  end
+
+  config.wrappers :checkbox,
+    hint_class: :field_with_hint,
+    error_class: :field_with_errors,
+    valid_class: :field_without_errors do |b|
+      b.wrapper tag: 'div', class: 'relative flex' do |ba|
+        ba.use :input, type: 'checkbox', class: "shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+        ba.use :label, class: 'ml-4 text-sm font-medium'
+      end
+  end
+
+  config.wrappers :color,
+    hint_class: :field_with_hint,
+    error_class: :field_with_errors,
+    valid_class: :field_without_errors do |b|
+      b.wrapper tag: 'div', class: 'relative flex-reverse min-h-full' do |ba|
+        ba.use :label, class: 'block text-sm font-medium mb-2 dark:text-white'
+        ba.use :input, type: 'color', class: 'py-1 px-1 block w-11 h-[2.875rem] grow border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600'
+      end
+    end
+
+  config.wrappers :file,
+    hint_class: :field_with_hint,
+    error_class: :field_with_errors,
+    valid_class: :field_without_errors do |b|
+      b.wrapper tag: 'div', class: 'relative' do |ba|
+        ba.use :label, class: 'block text-sm font-medium mb-4 dark:text-white'
+        ba.use :input, class: 'block w-full text-sm text-gray-500
+        file:me-4 file:py-2 file:px-4
+        file:rounded-full file:border
+        file:border-brand
+        file:text-sm file:font-semibold
+        file:bg-white file:text-brand
+        hover:file:cursor-pointer
+        hover:file:bg-brand-700
+        hover:file:text-white
+        file:disabled:opacity-50 file:disabled:pointer-events-none
+        dark:text-neutral-500
+        dark:file:bg-brand-500
+        dark:hover:file:bg-brand-400', type: :file
+      end
+    end
+
+  # The default wrapper to be used by the FormBuilder.
+  config.default_wrapper = :default
+
+
+  # Method used to tidy up errors. Specify any Rails Array method.
+  # :first lists the first message for each field.
+  # Use :to_sentence to list all errors for each field.
+  # config.error_method = :first
+
+  # Default tag used for error notification helper.
+  config.error_notification_tag = :div
+
+  # CSS class to add for error notification helper.
+  config.error_notification_class = 'error_notification'
+
+  # Series of attempts to detect a default label method for collection.
+  # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]
+
+  # Series of attempts to detect a default value method for collection.
+  # config.collection_value_methods = [ :id, :to_s ]
+
+  # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
+  # config.collection_wrapper_tag = nil
+
+  # You can define the class to use on all collection wrappers. Defaulting to none.
+  # config.collection_wrapper_class = nil
+
+  # You can wrap each item in a collection of radio/check boxes with a tag,
+  # defaulting to :span.
+  # config.item_wrapper_tag = :span
+
+  # You can define a class to use in all item wrappers. Defaulting to none.
+  # config.item_wrapper_class = nil
+
+  # How the label text should be generated altogether with the required text.
+  # config.label_text = lambda { |label, required, explicit_label| "#{required} #{label}" }
+
+  # You can define the class to use on all labels. Default is nil.
+  # config.label_class = nil
+
+  # You can define the default class to be used on forms. Can be overridden
+  # with `html: { :class }`. Defaulting to none.
+  # config.default_form_class = nil
+
+  # You can define which elements should obtain additional classes
+  # config.generate_additional_classes_for = [:wrapper, :label, :input]
+
+  # Whether attributes are required by default (or not). Default is true.
+  # config.required_by_default = true
+
+  # Tell browsers whether to use the native HTML5 validations (novalidate form option).
+  # These validations are enabled in SimpleForm's internal config but disabled by default
+  # in this configuration, which is recommended due to some quirks from different browsers.
+  # To stop SimpleForm from generating the novalidate option, enabling the HTML5 validations,
+  # change this configuration to true.
+  config.browser_validations = false
+
+  # Custom mappings for input types. This should be a hash containing a regexp
+  # to match as key, and the input type that will be used when the field name
+  # matches the regexp as value.
+  # config.input_mappings = { /count/ => :integer }
+
+  # Custom wrappers for input types. This should be a hash containing an input
+  # type as key and the wrapper that will be used for all inputs with specified type.
+  # config.wrapper_mappings = { string: :prepend }
+
+  # Namespaces where SimpleForm should look for custom input classes that
+  # override default inputs.
+  # config.custom_inputs_namespaces << "CustomInputs"
+
+  # Default priority for time_zone inputs.
+  # config.time_zone_priority = nil
+
+  # Default priority for country inputs.
+  # config.country_priority = nil
+
+  # When false, do not use translations for labels.
+  # config.translate_labels = true
+
+  # Automatically discover new inputs in Rails' autoload path.
+  # config.inputs_discovery = true
+
+  # Cache SimpleForm inputs discovery
+  # config.cache_discovery = !Rails.env.development?
+
+  # Default class for inputs
+  # config.input_class = nil
+
+  # Define the default class of the input wrapper of the boolean input.
+  config.boolean_label_class = 'checkbox'
+
+  # Define the way to render check boxes / radio buttons with labels.
+  config.boolean_style = :inline
+
+  # Defines if the default input wrapper class should be included in radio
+  # collection wrappers.
+  # config.include_default_input_wrapper_class = true
+
+  # Defines which i18n scope will be used in Simple Form.
+  # config.i18n_scope = 'simple_form'
+
+  # Defines validation classes to the input_field. By default it's nil.
+  # config.input_field_valid_class = 'is-valid'
+  # config.input_field_error_class = 'is-invalid'
+end
