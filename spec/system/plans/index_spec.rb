@@ -5,7 +5,7 @@ RSpec.describe 'Plans', type: :system do
   let!(:other_category) { FactoryBot.create(:category) }
 
   def create_plans_for_category(category, count)
-    FactoryBot.create_list(:plan, count, category: category)
+    FactoryBot.create_list(:plan, count, category:)
   end
 
   before do
@@ -32,7 +32,7 @@ RSpec.describe 'Plans', type: :system do
     end
   end
 
-  fcontext 'filtering' do
+  context 'filtering' do
     it 'clicking on a tab with category filters plans for that category' do
       expect(page).to have_field(other_category.name)
 
